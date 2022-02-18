@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,125 +17,96 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+
         children: [
-       
-              Image.asset('images/Untitled-1.png',),
+
+             Image.asset('assets/images/senti.png'),
               SizedBox(height: 30),
-              Container(child: Text('Log in  ', style: TextStyle(fontSize: 40, color:  Colors.cyan[800]), ),),
+
              SizedBox(height: 35,),
-             
+              Container(
+
+                child: Text('       Email address',),
+              ),
+
               Container(
               padding: EdgeInsets.all(20),
-                
+
                 child: TextField(
                   controller: emailController,
                   decoration: const InputDecoration(
-                    
-                 
+
+
                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.cyan, width: 1),
+                      borderSide: const BorderSide( width: 1),
                      borderRadius: BorderRadius.all(Radius.circular(20)),),
-                       label: Text.rich(
-            TextSpan(
-              children: <InlineSpan>[
-                WidgetSpan(
-                  child: Text(
-                    'EMAIL',
-                  style: TextStyle(fontSize: 10,color:Colors.cyan,),
-                  ),
-                ),
-               
-              ]
-            ),
-               ),
+
                ),
 
               )
 
             ),
-            
-              Container(
+          Container(
+
+            child: Text('      Password',),
+          ),
+
+
+          Container(
                  padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-               
+
                 child: TextField(
                   controller: passwordController,
                   decoration: const InputDecoration(
-                   
-                    enabledBorder: OutlineInputBorder(
-                       borderSide: const BorderSide(color: Colors.cyan, width: 1),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),),
-                   label: Text.rich(
-            TextSpan(
-              children: <InlineSpan>[
-                WidgetSpan(
-                  child: Text(
-                    'PASSWORD',
-                  style: TextStyle(fontSize: 10,color:Colors.cyan,),
-                  ),
-                ),
-               
-              ]
-            ),
-               ),),
 
-              )
+                    enabledBorder: OutlineInputBorder(
+                       borderSide: const BorderSide( width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),),
+                ),
+
+              ),
+
+
               ),Container(
                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
               alignment: Alignment.bottomRight,
             child:   TextButton(
-              
-                
+
+
                   child: const Text(
                     'Forgot Password?',
-                    style: TextStyle(fontSize: 10, 
-                     color: Colors.cyan,
-                     
+                    style: TextStyle(fontSize: 10,
+
+
                   ),
                   ),
                   onPressed: () {
-                    Navigator.push(context, 
-                    MaterialPageRoute(builder: (context)=> const Reset()),
-                    );
+
                     //signup screen
                   },
                 ),
               ),
-               TextButton(
-                  child: const Text(
-                    'Are you a pharmacist?',
-                    style: TextStyle(fontSize: 15,
-                     color: Colors.cyan,
-                  ),
-                  ),
-                  onPressed: () {  Navigator.push(context, 
-                    MaterialPageRoute(builder: (context)=>  Home()),
-                    );
-                    //signup screen
-                   
-                 
-                    //signup screen
-                  },
-                ),
 
 
                Container(
-                  
+
                 width: 330,
                     height: 60,
-                    
+                   padding: EdgeInsets.only(left: 50),
                     child: ElevatedButton(
-                     
+
                      style: ElevatedButton.styleFrom(
                        shape: new RoundedRectangleBorder(
-                         borderRadius: new BorderRadius.circular(20)
+                         borderRadius: new BorderRadius.circular(30)
                        ),
-                    primary: Colors.cyan[800]),
+                    primary: Colors.red),
                       child: const Text('LOG IN',
                       style: TextStyle(
-                        fontFamily:'Berlin Sans FB',
+
                         fontSize: 20,
                         color: Colors.white,
                         height: 0.53333,
@@ -144,44 +116,17 @@ class _LoginState extends State<Login> {
                   textAlign: TextAlign.center,
                       ),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()){
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
-          
-                          );
+
                         }
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: (context)=>  Home()),
-                         ); //signup screen
-                      },
+
+    ,
                     )
                 ),
-                         Container(
-                           padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                           child: Row(
-            children: <Widget>[
-                SizedBox(height: 30),
-                Text('Don t have an account?', style: TextStyle(color: Colors.black, fontSize: 15),),
-                TextButton(
-                  child: const Text(
-                    'create a new account',
-                    style: TextStyle(fontSize: 10,
-                     color: Colors.cyan,
-                  ),
-                  ),
-                  onPressed: () {
 
-                    //signup screen
-                  },
-                )
-              ],
-              mainAxisAlignment: MainAxisAlignment.center,
-            ),
-                         ),
 
         ]
       ),
-    
+
     );
   }
 }
