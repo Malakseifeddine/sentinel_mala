@@ -49,7 +49,7 @@ class _Login extends State<Login> {
               ),
             ),
             Container(  width: 300,
-              padding: const EdgeInsets.only(right: 19,left: 20),
+              padding: const EdgeInsets.only(right: 20,left: 20),
               child: TextField(
                 obscureText: false,
                 controller: passwordController,
