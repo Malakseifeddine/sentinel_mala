@@ -1,135 +1,187 @@
 import 'package:flutter/material.dart';
 
 
-
-
-
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({ Key? key }) : super(key: key);
 
   @override
-  State<Login> createState() => _Login();
+  _LoginState createState() => _LoginState();
 }
 
+class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
-class _Login extends State<Login> {
-
-  final _controller = TextEditingController();
-  @override
-  void dispose(){
-    _controller.dispose();
-    super.dispose();
-  }
-  bool _validate = false;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        body: ListView(
-
-          children: <Widget>[
-
-
-            Image.asset('images/senti.png'),
-            Container(
-              height: 100,
-              padding: const EdgeInsets.all(10),
-              child: TextField(
-
-                controller: emailController,
-                decoration: const InputDecoration(
-                  prefixIcon :  Icon (Icons.email),
-                  border: OutlineInputBorder(),
-                  labelText: ' Email or phone number ',
-                  errorText: 'Email can\'t Be empty',
-
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+       
+              Image.asset('images/Untitled-1.png',),
+              SizedBox(height: 30),
+              Container(child: Text('Log in  ', style: TextStyle(fontSize: 40, color:  Colors.cyan[800]), ),),
+             SizedBox(height: 35,),
+             
+              Container(
+              padding: EdgeInsets.all(20),
+                
+                child: TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    
+                 
+                   enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.cyan, width: 1),
+                     borderRadius: BorderRadius.all(Radius.circular(20)),),
+                       label: Text.rich(
+            TextSpan(
+              children: <InlineSpan>[
+                WidgetSpan(
+                  child: Text(
+                    'EMAIL',
+                  style: TextStyle(fontSize: 10,color:Colors.cyan,),
+                  ),
                 ),
-              ),
+               
+              ]
             ),
-            Container(  width: 300,
-              padding: const EdgeInsets.only(right: 20,left: 20),
-              child: TextField(
-                obscureText: false,
-                controller: passwordController,
-                decoration: const InputDecoration(
-                  prefixIcon :  Icon (Icons.lock,),
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
+               ),
+               ),
+
+              )
+
+            ),
+            
+              Container(
+                 padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+               
+                child: TextField(
+                  controller: passwordController,
+                  decoration: const InputDecoration(
+                   
+                    enabledBorder: OutlineInputBorder(
+                       borderSide: const BorderSide(color: Colors.cyan, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),),
+                   label: Text.rich(
+            TextSpan(
+              children: <InlineSpan>[
+                WidgetSpan(
+                  child: Text(
+                    'PASSWORD',
+                  style: TextStyle(fontSize: 10,color:Colors.cyan,),
+                  ),
                 ),
-              ),
+               
+              ]
             ),
-            Container(
+               ),),
+
+              )
+              ),Container(
+                 padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
               alignment: Alignment.bottomRight,
-              child: TextButton(
+            child:   TextButton(
+              
+                
+                  child: const Text(
+                    'Forgot Password?',
+                    style: TextStyle(fontSize: 10, 
+                     color: Colors.cyan,
+                     
+                  ),
+                  ),
+                  onPressed: () {
+                    Navigator.push(context, 
+                    MaterialPageRoute(builder: (context)=> const Reset()),
+                    );
+                    //signup screen
+                  },
+                ),
+              ),
+               TextButton(
+                  child: const Text(
+                    'Are you a pharmacist?',
+                    style: TextStyle(fontSize: 15,
+                     color: Colors.cyan,
+                  ),
+                  ),
+                  onPressed: () {  Navigator.push(context, 
+                    MaterialPageRoute(builder: (context)=>  Home()),
+                    );
+                    //signup screen
+                   
+                 
+                    //signup screen
+                  },
+                ),
 
-                onPressed: () {
-                  //forgot password screen
-                },
-                child: const Text('Forgot Password?',
-                    textAlign: TextAlign.right,
-                    style:TextStyle(
-                        color: Colors.black
+
+               Container(
+                  
+                width: 330,
+                    height: 60,
+                    
+                    child: ElevatedButton(
+                     
+                     style: ElevatedButton.styleFrom(
+                       shape: new RoundedRectangleBorder(
+                         borderRadius: new BorderRadius.circular(20)
+                       ),
+                    primary: Colors.cyan[800]),
+                      child: const Text('LOG IN',
+                      style: TextStyle(
+                        fontFamily:'Berlin Sans FB',
+                        fontSize: 20,
+                        color: Colors.white,
+                        height: 0.53333,
+                      ),
+                        textHeightBehavior:
+                      TextHeightBehavior(applyHeightToFirstAscent: false),
+                  textAlign: TextAlign.center,
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Processing Data')),
+          
+                          );
+                        }
+                        Navigator.push(context, 
+                        MaterialPageRoute(builder: (context)=>  Home()),
+                         ); //signup screen
+                      },
                     )
                 ),
-              ),
-            ),
-
-            Container(
-
-
-                height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                child: ElevatedButton(
-
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: const Size (240,80),
-
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(40.0)
-                      ),
-                      primary: Color(0xFF1B5E20)),
-                  child: const Text('Login',
-
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      height: 0.53333,
-                    ),
-                    textHeightBehavior:
-                    TextHeightBehavior(applyHeightToFirstAscent: false),
-                    textAlign: TextAlign.center,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _controller.text.isEmpty?
-                      _validate = true : _validate =false ;
-
-                    });
-                  },
-                )
-
-            ),
-
-            Row(
-              children: <Widget>[
+                         Container(
+                           padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                           child: Row(
+            children: <Widget>[
                 SizedBox(height: 30),
+                Text('Don t have an account?', style: TextStyle(color: Colors.black, fontSize: 15),),
                 TextButton(
                   child: const Text(
-                    'Create new account',
-                    style: TextStyle(fontSize: 20,
-                        color: Colors.black,
-                        fontFamily: 'Berlin Sans FB'),
+                    'create a new account',
+                    style: TextStyle(fontSize: 10,
+                     color: Colors.cyan,
+                  ),
                   ),
                   onPressed: () {
+
                     //signup screen
                   },
                 )
               ],
               mainAxisAlignment: MainAxisAlignment.center,
             ),
-          ],
-        ));
+                         ),
+
+        ]
+      ),
+    
+    );
   }
 }
